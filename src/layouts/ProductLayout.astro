@@ -1,0 +1,289 @@
+---
+import { Image } from "astro:assets";
+
+// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
+import { getOptimizedImage } from "@js/utils";
+import landingImage from "@assets/images/landing-products.jpg"; // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+const optimizedImage = await getOptimizedImage(landingImage);
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Landing from "@components/Landing.astro";
+import CTA from "@components/CTA.astro";
+import Price from "@components/Snipcart/Price.astro";
+import QuantitySelector from "@components/Snipcart/QuantitySelector.astro";
+
+const { product } = Astro.props;
+const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
+---
+
+<BaseLayout title={name} description={description} preloadedImage={optimizedImage}>
+
+	<Landing title={product.collection} image={optimizedImage} />
+
+	<section id="product">
+		<div class="cs-container">
+			<Image src={image} alt={name} inferSize={true} class="cs-large-image" />
+			<div class="cs-product-info">
+				<h3 class="cs-h3">{name}</h3>
+
+				<Price currency={currency} price={price} discountedPrice={discountedPrice} />
+                
+				<div class="cs-info-text">
+                    <h3 class="cs-details">Product Details</h3>
+					<Fragment set:html={product.rendered.html} />
+				</div>
+
+                <QuantitySelector product={product} />
+			</div>
+		</div>
+	</section>
+
+	<CTA />
+</BaseLayout>
+
+<style lang="less">
+	/* Mobile - 360px */
+	@media only screen and (min-width: 0rem) {
+		#product {
+			padding: var(--sectionPadding);
+			overflow: hidden;
+
+			.cs-container {
+				width: 100%;
+				/* changes to 1280px at desktop */
+				max-width: (750/16rem);
+				margin: auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				/* 28px - 64px */
+				gap: clamp(1.75rem, 5vw, 4rem);
+			}
+
+			.cs-large-image {
+				width: 100%;
+				/* 248px - 533px */
+				height: clamp(15.5rem, 70vw, 33.3125rem);
+				display: block;
+
+				img {
+					width: 100%;
+					height: 100%;
+					/* as we want to show the product in full, contain the image in the img tag. then, use a matching background color for the whitespace. feel free to remove and use object-fit:cover if you'd rather */
+					object-fit: contain;
+					display: block;
+				}
+			}
+
+			.cs-h3 {
+				font-size: var(--headerFontSize);
+				font-weight: 900;
+				line-height: 1.2em;
+				margin: 0 0 (8/16rem);
+				color: var(--headerColor);
+			}
+
+			.cs-info-text {
+				font-size: (16/16rem);
+				font-weight: 400;
+				line-height: 1.5em;
+				/* 12px - 16px */
+				margin-block: (24/16rem);
+				color: var(--bodyTextColor);
+			}
+
+			.cs-details {
+				font-size: (16/16rem);
+				font-weight: 700;
+				line-height: 1.2em;
+				width: fit-content;
+                margin: clamp(0.75rem, 2vw, 1rem) 0 (8/16rem);
+
+				color: var(--bodyTextColor);
+				/* using a border-bottom instead of text-decoration to give more space between the line and the text */
+				border-bottom: 1px solid var(--bodyTextColor);
+				display: block;
+			}
+
+			.cs-option {
+				font-size: (14/16rem);
+				font-weight: 700;
+				line-height: 1.5em;
+				color: var(--bodyTextColor);
+			}
+
+			.cs-dropdown {
+				width: 100%;
+				max-width: (240/16rem);
+				height: (48/16rem);
+				margin-bottom: (24/16rem);
+				padding: 0 (16/16rem);
+				background: #f7f7f7;
+				border: 1px solid #e8e8e8;
+				border-radius: (100/16rem);
+				outline: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: (16/16rem);
+				cursor: pointer;
+			}
+
+			.cs-quantity {
+				width: 100%;
+				width: fit-content;
+				max-width: (240/16rem);
+				height: (48/16rem);
+				margin-bottom: (24/16rem);
+				padding: 0 (16/16rem);
+				background: #f7f7f7;
+				border: 1px solid #e8e8e8;
+				border-radius: (100/16rem);
+				outline: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: (16/16rem);
+				cursor: pointer;
+			}
+
+			.cs-select-icon {
+				display: none;
+			}
+
+			.cs-quantity-increment {
+				font-size: (24/16rem);
+				color: #767676;
+				background: none;
+				border: none;
+				cursor: pointer;
+			}
+
+			.cs-quantity-decrement {
+				font-size: (24/16rem);
+				color: #767676;
+				background: none;
+				border: none;
+				cursor: pointer;
+			}
+
+			.cs-quantity-input {
+				font-size: (20/16rem);
+				line-height: 1.5em;
+				text-align: center;
+				width: (32/16rem);
+				background-color: transparent;
+				border: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.cs-quantity-input[type="number"] {
+				margin: 0;
+				-webkit-appearance: none;
+				-moz-appearance: textfield;
+			}
+
+			.cs-button {
+				font-size: (16/16rem);
+				font-weight: 700;
+				line-height: 1.2em;
+				padding: (16/16rem);
+				background: none;
+				border: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex: 1 0 0;
+			}
+
+			.cs-buy {
+				max-height: (40/16rem);
+				padding: (8/16rem);
+				background: none;
+				border: 2px solid var(--primary);
+				border-radius: (4/16rem);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.cs-basket {
+				width: (24/16rem);
+				height: auto;
+			}
+		}
+
+		.visuallyhidden {
+			white-space: nowrap;
+			width: 1px;
+			height: 1px;
+			position: absolute;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
+			clip-path: inset(50%);
+		}
+	}
+
+	/* Desktop - 1024px */
+	@media only screen and (min-width: 64rem) {
+		#product {
+			.cs-container {
+				max-width: (1280/16rem);
+				flex-direction: row;
+				align-items: start;
+			}
+
+			.cs-large-image {
+				height: 100%;
+				/* dont grow or shrink and set the flex basis to 540px. the large image will stay at this width and the other content will adapt */
+				flex: 0 0 (540/16rem);
+			}
+
+			.cs-product-info {
+				/* grow to fill the rest of the flex-container */
+				flex: 1 0 0;
+			}
+		}
+	}
+
+	/* Dark Mode */
+	@media only screen and (min-width: 0rem) {
+		body.dark-mode {
+			#product {
+				.cs-h3,
+				.cs-info-text,
+				.cs-details,
+				.cs-option,
+				.cs-option b,
+				.cs-box,
+				.cs-quantity,
+				.cs-cart {
+					color: var(--bodyTextColorWhite);
+				}
+
+				.cs-price {
+					color: var(--primaryLight);
+				}
+
+				.cs-taxes {
+					color: var(--secondaryLight);
+				}
+
+				.cs-info-text {
+					opacity: 0.8;
+				}
+
+				.cs-box-number,
+				.cs-quantity,
+				.cs-cart {
+					background-color: var(--medium);
+					border-color: var(--accent);
+				}
+			}
+		}
+	}
+</style>
+
+

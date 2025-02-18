@@ -1,0 +1,58 @@
+---
+const { product } = Astro.props;
+---
+
+<div class="snipcart-item-quantity snipcart-item-line__quantity">
+	<h3 class="snipcart-item-quantity__label">Quantity</h3>
+	<div class="snipcart-item-quantity__quantity-price-container">
+		<div class="snipcart-item-quantity__quantity snipcart__font--std">
+			<button id="decrement-btn" aria-label="Decrement quantity" title="Decrement quantity" class="snipcart-button-icon is-small is-secondary">
+				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcart__icon"><path d="M48 31H16v2.462h32V31z" fill="currentColor"></path></svg>
+			</button>
+			<span class="snipcart__font--secondary snipcart__font--regular">0</span>
+			<button id="increment-btn" aria-label="Increment quantity" title="Increment quantity" class="snipcart-button-icon is-small is-secondary">
+				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcart__icon"><path d="M33.23 30.77H48v2.46H33.23V48h-2.46V33.23H16v-2.46h14.77V16h2.46v14.77z" fill="currentColor"></path></svg>
+			</button>
+		</div>
+	</div>
+</div>
+
+<style lang="less">
+	.snipcart-item-quantity__label {
+		font-family: inherit;
+		/* same as ..cs-details */
+		font-size: (16/16rem);
+		font-weight: 700;
+		line-height: 1.2em;
+		width: fit-content;
+		margin: clamp(0.75rem, 2vw, 1rem) 0 (8/16rem);
+		color: var(--bodyTextColor);
+		/* using a border-bottom instead of text-decoration to give more space between the line and the text */
+		border-bottom: 1px solid var(--bodyTextColor);
+		display: block;
+	}
+</style>
+
+<script is:inline define:vars={{ product }}>
+	document.addEventListener("snipcart.ready", () => {
+		const incrementBtn = document.getElementById("increment-btn");
+		const decrementBtn = document.getElementById("decrement-btn");
+
+		incrementBtn?.addEventListener("click", () => {
+			const quantity = document.querySelector(".snipcart__font--regular");
+			quantity.textContent = parseInt(quantity.textContent) + 1;
+			try {
+				Snipcart.api.cart.items.add({
+					id: product.id,
+					name: product.data.name,
+					price: product.data.discountedPrice ? product.data.discountedPrice : product.data.price,
+					url: `/products/${product.id}`,
+					image: product.data.image,
+					quantity: 1,
+				});
+			} catch (error) {
+				console.error(error);
+			}
+		});
+	});
+</script>

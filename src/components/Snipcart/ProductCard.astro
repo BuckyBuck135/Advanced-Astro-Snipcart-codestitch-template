@@ -1,0 +1,164 @@
+---
+import { Image } from "astro:assets";
+import { Product } from "@lloydjatkinson/astro-snipcart/astro";
+import Price from "./Price.astro";
+
+const { product } = Astro.props;
+const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
+---
+
+<article class="cs-item">
+	<a href={`products/${product.id}`} class="cs-link">
+		<div class="cs-picture-group">
+			<Image src={image} alt={name} inferSize={true} class="cs-picture" />
+			{discountPercent && <span class="cs-offer">-{discountPercent}%</span>}
+		</div>
+		<div class="cs-details">
+			<span class="cs-category">{categories.join(", ")}</span>
+			<h3 class="cs-name">{name}</h3>
+			<div class="cs-actions">
+				<div class="cs-flex">
+					<!-- if there's no discount, use this: <Price currency={currency} price={ price } /> -->
+					<Price currency={currency} price={price} discountedPrice={discountedPrice} />
+				</div>
+				<!-- Buy buton -->
+				<Product as="span" id={product.id} name={name} url="/product/standard-t-shirt" price={price} description={description} image={image}>
+					<button class="cs-buy" aria-label={`Add ${name} to cart`}>
+						<img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" />
+					</button>
+				</Product>
+			</div>
+		</div>
+	</a>
+</article>
+
+<style lang="less">
+	.cs-item {
+		width: 100%;
+		padding: (16/16rem);
+		border: 1px solid #e8e8e8;
+	}
+
+	.cs-link {
+		text-decoration: none;
+		display: block;
+
+		&:hover {
+			.cs-picture {
+				transform: scale(1.1);
+			}
+		}
+	}
+
+	.cs-picture-group {
+		width: auto;
+		height: (300/16rem);
+		margin-bottom: (20/16rem);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.cs-picture {
+		width: 100%;
+		height: 100%;
+		background-color: #f6f6f6;
+		/* using object-fit contain to keep the entirety of the product image in the frame */
+		/* feel free to change this to 'cover', or adjust the background-color above if you have consistent backgrounds on your products */
+		object-fit: contain;
+		transition: transform 0.6s;
+	}
+
+	.cs-offer {
+		font-size: (13/16rem);
+		font-weight: 700;
+		line-height: 1.2em;
+		text-transform: uppercase;
+		letter-spacing: 1.3px;
+		padding: (6/16rem);
+		color: #fff;
+		background: #ff4747;
+		position: absolute;
+		top: (12/16rem);
+		right: (12/16rem);
+	}
+
+	.cs-category {
+		font-size: (16/16rem);
+		line-height: 1.5em;
+		color: #767676;
+		text-transform: capitalize;
+	}
+
+	.cs-name {
+		/* 20px - 25px */
+		font-size: clamp(1.25rem, 1vw, 1.5625rem);
+		font-weight: 700;
+		line-height: 1.2em;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+		margin: 0;
+		color: var(--headerColor);
+		overflow: hidden;
+	}
+
+	.cs-actions {
+		margin-top: (20/16rem);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.cs-buy {
+		max-height: (40/16rem);
+		padding: (8/16rem);
+		background: none;
+		border: 2px solid var(--primary);
+		border-radius: (4/16rem);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.cs-basket {
+		width: (24/16rem);
+		height: auto;
+	}
+
+	/* Tablet - 768px */
+	@media only screen and (min-width: 48rem) {
+		.cs-item {
+			max-width: none;
+		}
+
+		.cs-picture-group {
+			/* 200px - 320px */
+			height: clamp(12.5rem, 23vw, 20rem);
+		}
+	}
+
+	/* Dark Mode */
+	body.dark-mode {
+		.cs-title,
+		.cs-button,
+		.cs-category,
+		.cs-was-price,
+		.cs-name {
+			color: var(--bodyTextColorWhite);
+		}
+
+		.cs-price {
+			color: var(--primary);
+		}
+
+		.cs-category,
+		.cs-was-price {
+			opacity: 0.8;
+		}
+
+		.cs-item {
+			background-color: var(--medium);
+			border-color: var(--accent);
+		}
+	}
+</style>

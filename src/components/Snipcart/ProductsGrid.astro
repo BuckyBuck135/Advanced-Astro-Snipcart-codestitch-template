@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import ProductCard from './ProductCard.astro';
+
+const { products } = Astro.props;
+---
+
+<section id="collection-1602">
+	<div class="cs-container">
+		<div class="cs-listing">
+			{
+				products.length >= 1 &&
+				  products.map((product) => (
+					<ProductCard
+						product={product}
+					/>
+				  ))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="less">
+	/* Mobile - 360px */
+	@media only screen and (min-width: 0rem) {
+		#collection-1602 {
+			padding: var(--sectionPadding);
+
+			.cs-container {
+				width: 100%;
+				max-width: (1280/16rem);
+				margin: auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				/* 48px - 64px */
+				gap: clamp(3rem, 6vw, 4rem);
+			}
+
+			.cs-content {
+				text-align: center;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: (24/16rem);
+			}
+
+			.cs-title {
+				margin: 0;
+			}
+
+			.cs-button-group {
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				/* 16px - 32px */
+				gap: clamp(1rem, 4vw, 2rem);
+			}
+		
+
+			.cs-listing {
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				justify-items: center;
+				/* 16px - 20px */
+				gap: clamp(1rem, 1.5vw, 1.25rem);			
+			}
+
+			
+		}
+	}
+
+	/* Tablet - 768px */
+	@media only screen and (min-width: 48rem) {
+		#collection-1602 {
+			.cs-content {
+				flex-direction: row;
+				justify-content: space-between;
+			}			
+		}
+	}
+
+	/* Dark Mode */
+	@media only screen and (min-width: 0rem) {
+		body.dark-mode {
+			#collection-1602 {
+				.cs-title,
+				.cs-button,
+				.cs-category,
+				.cs-was-price,
+				.cs-name {
+					color: var(--bodyTextColorWhite);
+				}
+
+				.cs-active {
+					color: var(--primary);
+				}
+
+				.cs-category,
+				.cs-was-price {
+					opacity: 0.8;
+				}
+
+				.cs-item {
+					background-color: var(--medium);
+					border-color: var(--accent);
+				}
+			}
+		}
+	}
+</style>

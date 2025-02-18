@@ -1,0 +1,48 @@
+---
+const { price, discountedPrice, currency } = Astro.props;
+
+// Change fr-FR to your ISO code of choice to use the Intl.NumberFormat API and format the price and discountedPrice
+const formattedPrice = new Intl.NumberFormat("fr-FR", { style: "currency", currency: currency }).format(price);
+const formatteDiscountedPrice = new Intl.NumberFormat("fr-FR", { style: "currency", currency: currency }).format(discountedPrice);
+const isOnSale = price >= discountedPrice;
+---
+
+{
+	!isOnSale ? (
+		<span class="cs-price">{formattedPrice}</span>
+	) : (
+		<>
+			<span class="cs-price">{formatteDiscountedPrice}</span>
+			<span class="cs-was-price">{formattedPrice}</span>
+		</>
+	)
+}
+
+<style lang="less">
+	.cs-price {
+		font-size: (20/16rem);
+		font-weight: 700;
+		line-height: 1.2em;
+		color: var(--secondary);
+	}
+
+	.cs-was-price {
+		font-size: (16/16rem);
+		font-weight: 700;
+		line-height: 1.2em;
+		text-decoration: line-through;
+		color: var(--bodyTextColor);
+		opacity: 0.6;
+		margin-left: 0.5em;
+	}
+
+	body.dark-mode {
+		.cs-price {
+			color: var(--primary);
+		}
+
+		.cs-was-price {
+			color: var(--bodyTextColorWhite);
+		}
+	}
+</style>

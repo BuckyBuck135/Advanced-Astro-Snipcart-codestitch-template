@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+import { CartCheckout, CartItemsCount } from "@lloydjatkinson/astro-snipcart/astro";
+---
+<div tabindex="0"  class="cs-cart">
+	<CartCheckout>
+		<button class="cs-button-solid" title="View Cart">
+			<Icon name="mdi--cart" />
+			<CartItemsCount />
+		</button>
+	</CartCheckout>
+</div>
+
+<style lang="less">
+	.cs-cart {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: (8/16rem);
+		color: var(--headerColor);
+		cursor: pointer;
+		transition: color 0.3s;
+
+		&:hover {
+			color: var(--primary);
+		}
+
+		svg {
+			width: (24/16rem);
+			height: (24/16rem);
+		}
+	}
+
+	body.dark-mode {
+		.cs-cart {
+			color: var(--bodyTextColorWhite);
+		}
+	}
+
+	@media only screen and (min-width: 64rem) {
+		.cs-cart {
+			order: 4;
+		}
+	}
+</style>
