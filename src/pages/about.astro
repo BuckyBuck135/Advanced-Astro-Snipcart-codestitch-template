@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "..//layouts/BaseLayout.astro";
-import CTA from "../components/CTA.astro";
-import Landing from "../components/Landing.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CTA from "@components/CTA.astro";
+import Landing from "@components/Landing.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/cabinets2.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import {getOptimizedImage} from "@js/utils"
+import landingImage from "@assets/images/landing-products.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import { Image } from "astro:assets";
 const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
@@ -31,44 +32,9 @@ const optimizedImage = await getOptimizedImage(landingImage)
     <div class="cs-container">
       <!-- Left Image Section -->
       <div class="cs-left">
-        <picture class="cs-picture cs-picture1">
-          <source
-            media="(max-width: 600px)"
-            srcset="/assets/images/cabinets2-m.jpg"
-          />
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/cabinets2.jpg"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/cabinets2.jpg"
-            alt="cabinets"
-            loading="lazy"
-            width="400"
-            height="563"
-          />
-        </picture>
-        <picture class="cs-picture cs-picture2">
-          <source
-            media="(max-width: 600px)"
-            srcset="/assets/images/construction-m.jpg"
-          />
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/construction.jpg"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/construction.jpg"
-            alt="house"
-            loading="lazy"
-            width="400"
-            height="563"
-          />
-        </picture>
+        <Image class="cs-picture cs-picture1" src={landingImage} alt="" />
+        <Image class="cs-picture cs-picture2" src={landingImage} alt="" />
+
       </div>
       <!-- Right Content Section-->
       <div class="cs-right">
@@ -184,7 +150,6 @@ const optimizedImage = await getOptimizedImage(landingImage)
 
       .cs-topper {
         text-align: left;
-        margin-bottom: (4/16rem);
       }
 
       .cs-title {
@@ -287,10 +252,6 @@ const optimizedImage = await getOptimizedImage(landingImage)
           background-color: var(--dark);
           /* 6px - 12px */
           border: clamp(0.375em, 1.5vw, 0.75em) solid var(--dark);
-        }
-
-        .cs-topper {
-          color: var(--primaryLight);
         }
 
         .cs-title,

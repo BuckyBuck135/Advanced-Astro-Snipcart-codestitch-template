@@ -1,21 +1,18 @@
 ---
-import { Image } from 'astro:assets';
-import ProductCard from './ProductCard.astro';
+import { Image } from "astro:assets";
+import ProductCard from "./ProductCard.astro";
 
 const { products } = Astro.props;
 ---
 
 <section id="collection-1602">
 	<div class="cs-container">
+		<div class="cs-content">
+			<span class="cs-topper">SPRING / SUMMER 2025</span>
+			<h2 class="cs-title">Our latest collection</h2>
+		</div>
 		<div class="cs-listing">
-			{
-				products.length >= 1 &&
-				  products.map((product) => (
-					<ProductCard
-						product={product}
-					/>
-				  ))
-			}
+			{products.length >= 1 && products.map((product) => <ProductCard product={product} />)}
 		</div>
 	</div>
 </section>
@@ -25,6 +22,7 @@ const { products } = Astro.props;
 	@media only screen and (min-width: 0rem) {
 		#collection-1602 {
 			padding: var(--sectionPadding);
+			background-color: var(--bodyTextColorWhite);
 
 			.cs-container {
 				width: 100%;
@@ -38,12 +36,13 @@ const { products } = Astro.props;
 			}
 
 			.cs-content {
+				/* set text align to left if content needs to be left aligned */
 				text-align: center;
 				width: 100%;
 				display: flex;
 				flex-direction: column;
+				/* centers content horizontally, set to flex-start to left align */
 				align-items: center;
-				gap: (24/16rem);
 			}
 
 			.cs-title {
@@ -58,7 +57,6 @@ const { products } = Astro.props;
 				/* 16px - 32px */
 				gap: clamp(1rem, 4vw, 2rem);
 			}
-		
 
 			.cs-listing {
 				width: 100%;
@@ -68,27 +66,19 @@ const { products } = Astro.props;
 				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 				justify-items: center;
 				/* 16px - 20px */
-				gap: clamp(1rem, 1.5vw, 1.25rem);			
+				gap: clamp(1rem, 1.5vw, 1.25rem);
 			}
-
-			
 		}
 	}
 
-	/* Tablet - 768px */
-	@media only screen and (min-width: 48rem) {
-		#collection-1602 {
-			.cs-content {
-				flex-direction: row;
-				justify-content: space-between;
-			}			
-		}
-	}
+
 
 	/* Dark Mode */
 	@media only screen and (min-width: 0rem) {
 		body.dark-mode {
 			#collection-1602 {
+				background-color: var(--medium);
+
 				.cs-title,
 				.cs-button,
 				.cs-category,

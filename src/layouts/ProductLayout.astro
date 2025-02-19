@@ -3,13 +3,7 @@
 
 import { Image } from "astro:assets";
 
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import { getOptimizedImage } from "@js/utils";
-import landingImage from "@assets/images/landing-products.jpg"; // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage);
-
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Landing from "@components/Landing.astro";
 import CTA from "@components/CTA.astro";
 import Price from "@components/Snipcart/Price.astro";
 import QuantitySelector from "@components/Snipcart/QuantitySelector.astro";
@@ -18,9 +12,8 @@ const { product } = Astro.props;
 const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
 ---
 
-<BaseLayout title={name} description={description} preloadedImage={optimizedImage}>
+<BaseLayout title={name} description={description}>
 
-	<Landing title={product.collection} image={optimizedImage} />
 
 	<section id="product">
 		<div class="cs-container">
@@ -48,6 +41,7 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 	@media only screen and (min-width: 0rem) {
 		#product {
 			padding: var(--sectionPadding);
+			padding-top: (160/16rem); /* compensates the nav bar */
 			overflow: hidden;
 
 			.cs-container {

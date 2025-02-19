@@ -5,20 +5,14 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
 import ProductsGrid from "@components/Snipcart/ProductsGrid.astro";
 
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/landing.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage)
-
 import { getCollection } from 'astro:content';
 import Hero from "@components/Hero.astro";
 const products = await getCollection("products");
 ---
 
 <BaseLayout
-  title="Pixel Perfect Websites"
-  description="Meta description for the page"
-  preloadedImage = {optimizedImage}
+  title="CodeStitch Astro x Snipcart starter kit"
+  description="CodeStitch Astro x Snipcart starter kit has been created to help you get started with your e-commerce project."
 >
   <!-- ============================================ -->
   <!--                    Hero                      -->
@@ -228,7 +222,6 @@ const products = await getCollection("products");
 
       .cs-topper {
         text-align: center;
-        margin-bottom: (16/16rem);
         color: var(--primary);
       }
 
@@ -344,17 +337,6 @@ const products = await getCollection("products");
     }
   }
 
-  /* Desktop Parallax Effect - 1300px */
-  @media only screen and (min-width: 81.25em) {
-    #hero {
-      background: url("/assets/images/landing.jpg");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      /* creates parallax effect on background image */
-      background-attachment: fixed;
-    }
-  }
 
   /* Dark Mode */
   @media only screen and (min-width: 0em) {
@@ -389,7 +371,6 @@ const products = await getCollection("products");
 
       .cs-topper {
         text-align: center;
-        margin-bottom: (16/16rem);
       }
 
       .cs-title {

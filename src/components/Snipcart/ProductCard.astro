@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { Product } from "@lloydjatkinson/astro-snipcart/astro";
 import Price from "./Price.astro";
+import { Icon } from "astro-icon/components";
 
 const { product } = Astro.props;
 const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
@@ -28,7 +29,8 @@ const priceInCart = discountedPrice ? discountedPrice : price
 				<!-- Buy buton -->
 				<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image}>
 					<button class="cs-buy" aria-label={`Add ${name} to cart`}>
-						<img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" />
+						<Icon name="mdi--basket-plus" class="cs-basket" aria-hidden="true" />
+						<!-- <img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" /> -->
 					</button>
 				</Product>
 			</div>
@@ -80,7 +82,7 @@ const priceInCart = discountedPrice ? discountedPrice : price
 		letter-spacing: 1.3px;
 		padding: (6/16rem);
 		color: #fff;
-		background: #ff4747;
+		background: var(--secondary);
 		position: absolute;
 		top: (12/16rem);
 		right: (12/16rem);
@@ -122,11 +124,20 @@ const priceInCart = discountedPrice ? discountedPrice : price
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		transition: 0.3s;
+		&:hover {
+			border-color: var(--primaryLight);
+			.cs-basket {
+				color: var(--primaryLight);
+			}
+		}
 	}
 
 	.cs-basket {
 		width: (24/16rem);
 		height: auto;
+		color: var(--primary);
+		
 	}
 
 	/* Tablet - 768px */
