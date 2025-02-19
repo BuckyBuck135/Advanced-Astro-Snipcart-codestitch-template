@@ -1,4 +1,6 @@
 ---
+// This is the layout for any /products/* item //
+
 import { Image } from "astro:assets";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
@@ -27,13 +29,13 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 				<h3 class="cs-h3">{name}</h3>
 
 				<Price currency={currency} price={price} discountedPrice={discountedPrice} />
+				<QuantitySelector product={product} />
                 
 				<div class="cs-info-text">
                     <h3 class="cs-details">Product Details</h3>
 					<Fragment set:html={product.rendered.html} />
 				</div>
 
-                <QuantitySelector product={product} />
 			</div>
 		</div>
 	</section>
@@ -269,10 +271,6 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 
 				.cs-taxes {
 					color: var(--secondaryLight);
-				}
-
-				.cs-info-text {
-					opacity: 0.8;
 				}
 
 				.cs-box-number,

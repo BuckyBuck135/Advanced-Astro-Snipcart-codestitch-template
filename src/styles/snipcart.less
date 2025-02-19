@@ -1,6 +1,18 @@
-/*-- -------------------------- -->
-<---   Snipcart style overrides -->
-<--- -------------------------- -*/
+/*-- --------------------------------- -->
+<---   Snipcart global style overrides -->
+<--- --------------------------------- -*/
+
+#snipcart {
+	--bgColor-buttonSecondary: var(--primary);
+	font-family: inherit;
+}
+
+.snipcart__font--secondary {
+	font-family: inherit;
+}
+.snipcart-modal {
+	color: var(--headerColor);
+}
 
 .snipcart-button-primary {
 	font-family: inherit;
@@ -20,5 +32,17 @@
 		font-size: (16/16rem);
 		font-family: inherit;
 		font-weight: bold;
+	}
+}
+
+body.dark-mode {
+	#snipcart {
+		--bgColor-default: var(--accent);
+		--bgColor-modal: var(--medium);
+		--color-inputLabel: var(--bodyTextColorWhite);
+		--color-default: var(--bodyTextColorWhite);
+		--color-link: var(--bodyTextColorWhite);
+		--bgColor-buttonSecondary: var(--primary);
+		--color-buttonSecondary: var(--headerColor);
 	}
 }

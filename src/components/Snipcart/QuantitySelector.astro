@@ -1,5 +1,10 @@
 ---
+import { Product } from "@lloydjatkinson/astro-snipcart/astro";
 const { product } = Astro.props;
+const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds, quantity = 1 } = product.data;
+
+// We need to chck which price to pass to the Product component
+const priceInCart = discountedPrice ? discountedPrice : price
 ---
 
 <div class="snipcart-item-quantity snipcart-item-line__quantity">
@@ -9,7 +14,7 @@ const { product } = Astro.props;
 			<button id="decrement-btn" aria-label="Decrement quantity" title="Decrement quantity" class="snipcart-button-icon is-small is-secondary">
 				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcart__icon"><path d="M48 31H16v2.462h32V31z" fill="currentColor"></path></svg>
 			</button>
-			<span class="snipcart__font--secondary snipcart__font--regular">0</span>
+			<span id="quantity-el" class="snipcart__font--secondary snipcart__font--regular">{quantity}</span>
 			<button id="increment-btn" aria-label="Increment quantity" title="Increment quantity" class="snipcart-button-icon is-small is-secondary">
 				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcart__icon"><path d="M33.23 30.77H48v2.46H33.23V48h-2.46V33.23H16v-2.46h14.77V16h2.46v14.77z" fill="currentColor"></path></svg>
 			</button>
@@ -17,7 +22,15 @@ const { product } = Astro.props;
 	</div>
 </div>
 
+<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image} quantity={quantity}>
+	<button class="cs-button-solid" aria-label={`Add ${name} to cart`}> Add to cart </button>
+</Product>
+
 <style lang="less">
+	.snipcart-item-quantity__quantity {
+		background-color: var(--bodyTextColorWhite);
+	}
+
 	.snipcart-item-quantity__label {
 		font-family: inherit;
 		/* same as ..cs-details */
@@ -31,28 +44,58 @@ const { product } = Astro.props;
 		border-bottom: 1px solid var(--bodyTextColor);
 		display: block;
 	}
+
+	.snipcart-button-icon.is-secondary {
+		background-color: var(--primary);
+		color: #000;
+	}
+
+	body.dark-mode {
+		.snipcart-item-quantity__label {
+			color: var(--bodyTextColorWhite);
+		}
+	}
 </style>
 
 <script is:inline define:vars={{ product }}>
 	document.addEventListener("snipcart.ready", () => {
-		const incrementBtn = document.getElementById("increment-btn");
 		const decrementBtn = document.getElementById("decrement-btn");
+		const incrementBtn = document.getElementById("increment-btn");
+		const quantityEl = document.getElementById("quantity-el");
+		const addToCartBtn = document.querySelector(".snipcart-add-item");
 
-		incrementBtn?.addEventListener("click", () => {
-			const quantity = document.querySelector(".snipcart__font--regular");
-			quantity.textContent = parseInt(quantity.textContent) + 1;
-			try {
-				Snipcart.api.cart.items.add({
-					id: product.id,
-					name: product.data.name,
-					price: product.data.discountedPrice ? product.data.discountedPrice : product.data.price,
-					url: `/products/${product.id}`,
-					image: product.data.image,
-					quantity: 1,
-				});
-			} catch (error) {
-				console.error(error);
+		if (!decrementBtn || !incrementBtn || !quantityEl || !addToCartBtn) return;
+
+		let quantity = parseInt(quantityEl.textContent, 10) || 1;
+
+		// Update the Snipcart button quantity
+		function updateQuantity(newQuantity) {
+			quantity = newQuantity;
+			quantityEl.textContent = quantity;
+			addToCartBtn.setAttribute("data-item-quantity", quantity);
+
+			// Disable decrement button if quantity <= 1
+			decrementBtn.disabled = quantity <= 1;
+		}
+
+		// Decrement quantity
+		decrementBtn.addEventListener("click", () => {
+			if (quantity > 1) {
+				updateQuantity(quantity - 1);
 			}
 		});
+
+		// Increment quantity
+		incrementBtn.addEventListener("click", () => {
+			updateQuantity(quantity + 1);
+		});
+
+		// Ensure quantity is correct when clicking "Add to Cart"
+		addToCartBtn.addEventListener("click", () => {
+			addToCartBtn.setAttribute("data-item-quantity", quantity);
+		});
+
+		// Initialize button state
+		updateQuantity(quantity);
 	});
 </script>

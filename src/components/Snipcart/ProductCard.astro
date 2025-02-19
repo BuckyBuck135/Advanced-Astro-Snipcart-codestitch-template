@@ -5,6 +5,10 @@ import Price from "./Price.astro";
 
 const { product } = Astro.props;
 const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
+
+// We need to chck which price to pass to the Product component
+const priceInCart = discountedPrice ? discountedPrice : price
+
 ---
 
 <article class="cs-item">
@@ -22,7 +26,7 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 					<Price currency={currency} price={price} discountedPrice={discountedPrice} />
 				</div>
 				<!-- Buy buton -->
-				<Product as="span" id={product.id} name={name} url="/product/standard-t-shirt" price={price} description={description} image={image}>
+				<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image}>
 					<button class="cs-buy" aria-label={`Add ${name} to cart`}>
 						<img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" />
 					</button>
