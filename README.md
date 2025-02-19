@@ -1,7 +1,7 @@
-  <h3 align="center">Beginner Astro v4 Starter Kit</h3>
+  <h3 align="center">Advanced Astro v5 E-commerce Kit</h3>
 
   <p align="center">
-    This beginner kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as Astro components, scoped styling and scripting etc.
+    <!-- This advanced kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as Astro components, scoped styling and scripting etc. -->
     <br/>
     <br/>
     <a href="https://beginner-astro-kit.netlify.app/" target="_blank">View Live Result</a>
@@ -21,14 +21,7 @@
   - [Project Tree](#projectTree)
   - [Source Files and Folders](#sourceFilesAndFolders)
 - [Expanding the Project](#expandingTheProject)
-  - [Reusing Code](#reusingCode)
-  - [Adding More Pages](#addingMorePages)
-  - [Navigation via Front Matter](#navigationViaFrontMatter)
-  - [Built-in Astro components](#builtinastrocomponents)
-  - [Preloading Images](#preloadingimages)
-  - [CSS](#css)
-  - [Adding View Transitions](#addingViewTransitions)
-  - [Adding Netlify Forms](#netlifyforms)
+
 
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
@@ -56,20 +49,24 @@ minutes.
 4. Run `npm install` to install all dependencies.
 5. Run `npm run dev` to start the project and spin up a development server on `localhost:4321`.
 
+All commands are run from the root of the project, from a terminal:
 
-Next, it is recommended to update `data/client.json` with some new information about this project. Through the power of templating, the
-project's `<head>` and contact information will automatically be filled out, providing a first peek into some of the benefits of SSGs.
-
-You can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
+| Command           | Action                                       |
+|:----------------  |:-------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:3000`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
 <a name="prerequisites"></a>
 
 ## Prerequisites
 
-Only the vanilla web technologies are _required_ before using this kit, with some familiarity with Astro and React-style Components and props also recommended, but not essential. A lot of the leg-work for the non-vanilla technologies has been done for you. If you would like to read up on some of these things, we recommend the following resources:
+Familiarity with Astro is highly recommended. While a lot of the legwork with the Snipcart integration has been done for you, we recommend the following resources:
 
 1. [Astro's Documentation](https://docs.astro.build/en/getting-started/)
-2. [Astro Crash Course in 20 Minutes!](https://www.youtube.com/watch?v=zrPVTf761OI)
+2. [Astro-Snipcart integration documentation](https://astro-snipcart.vercel.app/)
+3. [Snipcart's documentation](https://docs.snipcart.com/v3/)
 
 <a name="features"></a>
 
