@@ -51,12 +51,16 @@ body.dark-mode {
 		--color-badge: var(--headerColor);
 		--color-badge-active: var(--headerColor);
 		--borderColor-badge-active: var(--primaryLight);
+		--color-input-error: #faa39a;
+		--bgColor-input-autofill: var(--secondaryLight);
 		
 	}
 
 	.snipcart-flash-message__title,
 	.snipcart-flash-message__description,
-	.snipcart-featured-payment-methods__title {
+	.snipcart-form__label,
+	.snipcart-featured-payment-methods__title,
+	.snipcart-typeahead__suggestion {
 		color: var(--bodyTextColor);
 	}
 
@@ -65,12 +69,14 @@ body.dark-mode {
 	.snipcart__notice--with-icon,
 	.snipcart-featured-payment-methods__link,
 	.snipcart-payment-form__input,
-	.snipcart-order__details__content {
-	
+	.snipcart-typeahead__suggestion--active,
+	.snipcart-order__details__content,
+	.snipcart-order__invoice-number--highlight {
 		color: var(--bodyTextColorWhite);
 	}
 
+	// TODO - check whether this element only appears in TEST MODE
 	.snipcart-payment-card-form {
-		background-color:antiquewhite;
+		background-color:var(--color-default); 
 	}
 }
