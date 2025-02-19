@@ -38,11 +38,39 @@
 body.dark-mode {
 	#snipcart {
 		--bgColor-default: var(--accent);
+		--bgColor-alt: var(--accent);
 		--bgColor-modal: var(--medium);
+		--bgColor-error: var(--primaryLight);
+		--bgColor-buttonSecondary: var(--primary);
 		--color-inputLabel: var(--bodyTextColorWhite);
 		--color-default: var(--bodyTextColorWhite);
 		--color-link: var(--bodyTextColorWhite);
-		--bgColor-buttonSecondary: var(--primary);
 		--color-buttonSecondary: var(--headerColor);
+		--color-icon: var(--primaryLight);
+		--bgColor-badge-active: var(--bodyTextColorWhite);
+		--color-badge: var(--headerColor);
+		--color-badge-active: var(--headerColor);
+		--borderColor-badge-active: var(--primaryLight);
+		
+	}
+
+	.snipcart-flash-message__title,
+	.snipcart-flash-message__description,
+	.snipcart-featured-payment-methods__title {
+		color: var(--bodyTextColor);
+	}
+
+	.snipcart-billing-completed__information,
+	.snipcart-shipping-completed__information,
+	.snipcart__notice--with-icon,
+	.snipcart-featured-payment-methods__link,
+	.snipcart-payment-form__input,
+	.snipcart-order__details__content {
+	
+		color: var(--bodyTextColorWhite);
+	}
+
+	.snipcart-payment-card-form {
+		background-color:antiquewhite;
 	}
 }
