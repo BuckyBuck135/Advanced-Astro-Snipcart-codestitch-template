@@ -44,7 +44,7 @@ This Astro integration contains all of the features that you need to build an e-
 
 ## Prerequisites
 
-Make sure you understand [Snipcar's features and pricing structure](https://snipcart.com/), as well as what it can and cannot do, as opposed to Shopify for exxample.
+Make sure you understand [Snipcart's features and pricing structure](https://snipcart.com/), as well as what it can and cannot do, as opposed to Shopify for exxample.
 
 To use the kit, familiarity with Astro is highly recommended, especially components, props and content collections. JavaScript knowledge is optional, but will be necessary for customizing Snipcart behavior further. While a lot of the legwork with the Snipcart integration has been done for you, we recommend the following resources:
 
@@ -300,3 +300,5 @@ I hope that this kit will prove useful to you. If you have any questions or woul
 
 Happy coding!
 **_Geoffrey_**
+
+If you’ve found my work helpful or just want to fuel my next project, a coffee (or two!) would be much appreciated. ☕ Cheers, and thanks for your [support](buymeacoffee.com/buckybuck135)!
