@@ -19,10 +19,7 @@ import { CartCheckout } from "@lloydjatkinson/astro-snipcart/astro";
         decoding="async"
       />
     </a>
-    <!--Dark Mode toggle-->
-    <DarkModeToggle />
-    
-    <CartDisplay />
+   
 
     <!--Mobile Navigation-->
     <nav class="cs-nav" role="navigation">
@@ -62,6 +59,11 @@ import { CartCheckout } from "@lloydjatkinson/astro-snipcart/astro";
       </div>
     </nav>
 
+     <!--Dark Mode toggle-->
+     <DarkModeToggle />
+    
+     <!--Displays number of items and triggers opening the cart-->
+     <CartDisplay />
 
   </div>
 </header>

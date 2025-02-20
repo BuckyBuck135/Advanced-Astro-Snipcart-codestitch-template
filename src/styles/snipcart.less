@@ -7,12 +7,26 @@
 	--bgColor-buttonPrimary-hover: #000;
 	--color-link: var(--secondary);
 	--color-link-hover: var(--secondaryLight);
+	--color-icon: var(--secondary);
 	font-family: inherit;
 }
 
-.snipcart__font--secondary {
+.snipcart-cart-header {
+	padding-top: clamp(6rem, 10vw, 8rem);
+}
+
+.snipcart__font--secondary, 
+.snipcart__font--subtitle, 
+.snipcart__font--subtitle-small,
+.snipcart-modal__close {
 	font-family: inherit;
 }
+
+.snipcart-modal__close {
+	font-size: var(--bodyFontSize);
+	color: var(--bodyTextColor);
+}
+
 .snipcart-modal {
 	color: var(--headerColor);
 }
@@ -45,6 +59,8 @@ body.dark-mode {
 		--bgColor-modal: var(--medium);
 		--bgColor-error: var(--primaryLight);
 		--bgColor-buttonSecondary: var(--primary);
+		--bgColor-input: var(--medium);
+		--color-input: var(--bodyTextColorWhite);
 		--color-inputLabel: var(--bodyTextColorWhite);
 		--color-default: var(--bodyTextColorWhite);
 		--color-link: var(--bodyTextColorWhite);
@@ -62,20 +78,21 @@ body.dark-mode {
 
 	.snipcart-flash-message__title,
 	.snipcart-flash-message__description,
-	.snipcart-form__label,
 	.snipcart-featured-payment-methods__title,
 	.snipcart-typeahead__suggestion {
 		color: var(--bodyTextColor);
 	}
 
+	.snipcart-modal,
 	.snipcart-billing-completed__information,
 	.snipcart-shipping-completed__information,
 	.snipcart__notice--with-icon,
 	.snipcart-featured-payment-methods__link,
 	.snipcart-payment-form__input,
-	.snipcart-typeahead__suggestion--active,
 	.snipcart-order__details__content,
-	.snipcart-order__invoice-number--highlight {
+	.snipcart-order__invoice-number--highlight,
+	.snipcart-modal__close,
+	.snipcart-modal__close-title {
 		color: var(--bodyTextColorWhite);
 	}
 

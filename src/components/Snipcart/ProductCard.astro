@@ -8,8 +8,7 @@ const { product } = Astro.props;
 const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
 
 // We need to chck which price to pass to the Product component
-const priceInCart = discountedPrice ? discountedPrice : price
-
+const priceInCart = discountedPrice ? discountedPrice : price;
 ---
 
 <article class="cs-item">
@@ -119,25 +118,21 @@ const priceInCart = discountedPrice ? discountedPrice : price
 		max-height: (40/16rem);
 		padding: (8/16rem);
 		background: none;
-		border: 2px solid var(--primary);
+		background-color: var(--primary);
 		border-radius: (4/16rem);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		transition: 0.3s;
 		&:hover {
-			border-color: var(--primaryLight);
-			.cs-basket {
-				color: var(--primaryLight);
-			}
+			background-color: var(--primaryLight);
 		}
 	}
 
 	.cs-basket {
 		width: (24/16rem);
 		height: auto;
-		color: var(--primary);
-		
+		color: #000;
 	}
 
 	/* Tablet - 768px */
