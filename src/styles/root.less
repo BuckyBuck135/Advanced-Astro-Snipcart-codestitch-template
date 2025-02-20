@@ -57,14 +57,14 @@
 	// Button - can be replaced using CodeStitch's "Button" Stitches
 	.cs-button-solid {
 		font-family: inherit;
-		font-size: (16/16rem);
+		font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem);
 		font-weight: bold;
 		text-align: center;
 		text-transform: uppercase;
 		text-decoration: none;
 		width: auto;
-		height: (50/16rem);
-		padding: 0 (30/16rem);
+		// height: (24/16rem);
+		padding: (8/16rem);
 		color: #000;
 		background-color: var(--primary);
 		border: none;
@@ -99,6 +99,12 @@
 			z-index: -1;
 			transition: width 0.3s;
 		}
+	}
+}
+
+@media only screen and (min-width: 64em) {
+	.cs-button-solid {
+		padding: (12/16rem) (24/16rem);
 	}
 }
 
@@ -211,4 +217,21 @@ button {
 	html {
 		font-size: 0.85vw;
 	}
+}
+
+/* Utility classes for layout */
+
+.cs-hidden {
+    display: none;
+}
+
+@media (min-width: 64rem) {
+    .lg\:cs-flex {
+        display: flex;
+		gap: 0.5rem;
+    }
+
+	.lg\:cs-hidden {
+        display: none;
+    }
 }

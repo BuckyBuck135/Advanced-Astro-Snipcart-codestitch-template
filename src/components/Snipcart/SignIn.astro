@@ -1,15 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
-import { CartCheckout, CartItemsCount } from "@lloydjatkinson/astro-snipcart/astro";
+import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 ---
 <div class="cs-cart">
-	<CartCheckout>
-		<button class="cs-button-solid" title="View Cart">
-			<Icon name="mdi--cart" />
-			<CartItemsCount />
+    <CustomerSignIn>
+		<button class="cs-button-solid" aria-label="Sign in to your account." title="Sign in">
+			<Icon name="mdi--person-arrow" />
+            Sign in
 		</button>
-	</CartCheckout>
+    </CustomerSignIn>
 </div>
+
 
 <style lang="less">
 	.cs-cart {
