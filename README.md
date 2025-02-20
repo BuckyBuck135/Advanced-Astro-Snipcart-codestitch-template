@@ -1,10 +1,14 @@
+  
+> [!WARNING]
+> This beta version has not been tested in a real production environment.
+  
   <h3 align="center">Advanced Astro Snipcart E-commerce Starter Kit</h3>
 
   <p align="center">
-    <!-- This advanced kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as Astro components, scoped styling and scripting etc. -->
+    This advanced starter kit includes a pre-configured Astro setup and a Snipcart integration built on top of the Snipcart platform. It is a solution for rapidly building and selling products on the web. 
     <br/>
     <br/>
-    <a href="https://beginner-astro-kit.netlify.app/" target="_blank">View Live Result</a>
+    <a href="https://codestitch-astro-snipcart-starter-kit.netlify.app/" target="_blank">View Demo</a>
   </p>
 
   <p align="center">
@@ -13,36 +17,46 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Getting Started](#gettingStarted)
-- [Prerequisites](#prerequisites)
 - [Features](#features)
-- [Project Structure](#projectStructure)
-  - [Project Tree](#projectTree)
-  - [Source Files and Folders](#sourceFilesAndFolders)
-- [Expanding the Project](#expandingTheProject)
-
-
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Snipcart components](#snipcart-components)
+- [Project Structure](#project-structure)
+  - [Project Tree](#project-tree)
+  - [Source Files and Folders](#source-files-and-folders)
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
 - [Conclusion](#conclusion)
 
-<a name="overview"></a>
 
-## Overview
+## Features
 
-This beginner kit includes a pre-configured <a href="https://www.astro.build">Astro</a> environment, which
-allows for repeated components, centralized data and greater room to scale as your clients grow. The kit runs the latest major Astro version, v4.
+This Astro integration contains all of the features that you need to build an e-commerce site with [Snipcart](https://snipcart.com/), including:
 
-An example website has also been provided, with easy substitution of website sections possible through the use of <a href="https://codestitch.app/">CodeStitch's
-vanilla component library</a>. This kit aims to get any project off the ground in as little time as possible, with deployment being possible in as little as two
-minutes.
+* Automatic installation of the Snipcart library
+* Astro components to define products
+* Astro components for features such as displaying basket and total price
+* Content collection populated with a generic product collection
+* Dynamic product detail page setup
+* Runs on Astro v5
+* Automatic sitemaps
 
-<a name="gettingStarted"></a>
+
+## Prerequisites
+Make sure you understand [Snipcar's features and pricing structure](https://snipcart.com/), as well as what it can and cannot do, as opposed to Shopify for exxample.
+
+To use the kit, familiarity with Astro is highly recommended, especially components, props and content collections. JavaScript knowledge is optional, but will be necessary for customizing Snipcart behavior further.  While a lot of the legwork with the Snipcart integration has been done for you, we recommend the following resources:
+
+1. [Astro's Documentation](https://docs.astro.build/en/getting-started/)
+2. [Astro-Snipcart integration documentation](https://astro-snipcart.vercel.app/)
+3. [Snipcart's documentation](https://docs.snipcart.com/v3/)
+
+
 
 ## Getting Started
 
-1. At the top right of the <a href="https://github.com/ItsEthanH/intermediate-starter-less">GitHub Repository</a>, click the green _Use this template_ button,
+### Installation
+1. At the top right of the repository, click the green _Use this template_ button,
    then click _Create a new repository_.
 2. Follow the instructions to create a new repository, using this repo as a template.
 3. When created, clone the repository to your local machine.
@@ -54,46 +68,138 @@ All commands are run from the root of the project, from a terminal:
 | Command           | Action                                       |
 |:----------------  |:-------------------------------------------- |
 | `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
 | `npm run build`   | Build your production site to `./dist/`      |
 | `npm run preview` | Preview your build locally, before deploying |
 
-<a name="prerequisites"></a>
 
-## Prerequisites
+### Snipcart API key environment variable
+Firstly make sure to have read how to define and read environment variables in the [Astro documentation](https://docs.astro.build/en/guides/environment-variables/).
 
-Familiarity with Astro is highly recommended. While a lot of the legwork with the Snipcart integration has been done for you, we recommend the following resources:
+This integration requires an environment variable named PUBLIC_SNIPCART_API_KEY. Remember, do not hardcode magic strings and do not commit secrets to a repository.
 
-1. [Astro's Documentation](https://docs.astro.build/en/getting-started/)
-2. [Astro-Snipcart integration documentation](https://astro-snipcart.vercel.app/)
-3. [Snipcart's documentation](https://docs.snipcart.com/v3/)
+To do so, create a `.env` file at the root of the project to store your environment variables `PUBLIC_SNIPCART_API_KEY=write_your_key_here`
 
-<a name="features"></a>
-
-## Features
-
-* Runs on Astro v4
-* Leveraging components, props and scoped styles, as demonstrated in `/src/components/Landing.astro` for example
-* Leveraging Astro's built-in components such as `<Picture />`, as demonstrated in `/src/components/Landing.astro` for example
-* Automatically generates `sitemap-index.xml` and `sitemap-0.xml` thanks to the [Astro Sitemap integration](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
+Get your Public Test API key on your Snipcart dashboard, under *** /account/credentials ***
 
 
-This kit ships the following packages:
-* [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
-* [Astro Sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/#_top) - Automatically generates `sitemap-index.xml` and `sitemap-0.xml`. Make sure to replace `https://yourwebsite.com` with your actual site URL in `astro.config.mjs` and `robots.txt`.
+### Snipcart allowed domains
+Snipcart by default does not allow any site to use your API key. [You need to configure it to allow your domain](https://docs.snipcart.com/v3/dashboard/store-configuration#5-domains--urls), under *** /account/domains ***
 
-* 
-<a name="projectStructure"></a>
+
+### Defining products
+> [!IMPORTANT]
+> Products are not configured from within Snipcart. This puts you and your application in full control of product definitions.
+
+This kit has elected to use ** Content collections** and markdown files to define the prodcuts, your products can be setup flexibly, such as:
+
+- Simple Markdown files with the frontmatter containing the YAML frontmatter defining the title, price, variants, etc.
+- JSON files
+- Your own backend API
+
+
+## Snipcart components
+
+### CartCheckout
+
+Used to trigger the opening of the Snipcart dialog.
+
+ * Slotted content will automatically trigger opening.
+
+```astro
+---
+import { CartCheckout } from '@lloydjatkinson/astro-snipcart/astro';
+---
+
+<CartCheckout>
+    <button>Open basket</button>
+</CartCheckout>
+```
+
+### CustomerSignIn
+
+Used to allow a customer to login or signup.
+
+ * The account is managed by Snipcart.
+ * Must be enabled in the Snipcart dashboard. Default is to allow guests only.
+ * Does nothing if allow guests only is enabled.
+
+```astro
+---
+import { CartCheckout } from '@lloydjatkinson/astro-snipcart/astro';
+---
+
+<CustomerSignIn>
+    <button>Login</button>
+</CustomerSignIn>
+```
+
+### CartItemsCount
+
+Used to render the count of total items in the cart.
+
+ * Snipcart will render the value.
+
+```astro
+---
+import { CartItemsCount } from '@lloydjatkinson/astro-snipcart/astro';
+---
+
+<span>
+    You have <CartItemsCount /> items in your cart.
+</span>
+```
+
+### CartTotalPrice
+
+Used to render the total price of the items in the cart.
+
+ * Snipcart will render the value.
+
+```astro
+---
+import { CartTotalPrice } from '@lloydjatkinson/astro-snipcart/astro';
+---
+
+<span>
+    You have £<CartItemsCount />  worth of items in your cart.
+</span>
+```
+
+### Product
+
+Used to define a product that is added to the cart when the user interacts with the component.
+
+ * This is a renderless component. That is, it does not visually render anything other than the slotted content and the appropriate Snipcart `data` attributes.
+ * Clicking this component triggers the adding of a product to the cart.
+ * Snipcart looks for the existence of this component with the appropriate `data` attributes and values as part of it's order validation (Snipcart can also use a JSON returning API for this).
+
+ ```astro
+ <Product
+    as="span"
+    id="SKU-0001"
+    name="Standard T-Shirt"
+    url="/product/standard-t-shirt"
+    price={12.99}
+    description="Every day basic t-shirt"
+    image="/blue-t-shirt.jpg"
+    customFields={[
+        { name: 'Size', options: ['Small', 'Medium', 'Large'], placeholder: 'Choose size', required: true },
+        { name: 'Pattern', options: ['Abstract', 'Neon', 'Tiger[+5.00]'] }
+    ]}>
+    <button>
+        Add
+    </button>
+</Product>
+```
+
+> [!TIP]
+> For more info on Astro snipcart components ad customization, you can read
+> * [Astro snipcart integration docs](https://astro-snipcart.vercel.app/guides/components-and-typescript/)
+> * [Snipcart docs](https://docs.snipcart.com/v3/setup/customization)
+
 
 ## Project Structure
-
-Astro leverages an opinionated folder layout for your project. Every Astro project root should include the following directories and files:
-* `src/*` - Your project source code (components, pages, styles, scripts etc.)
-* `public/*` - Your non-code, unprocessed assets (fonts, icons, etc.)
-* `package.json` - A project manifest.
-* `astro.config.mjs` - An Astro configuration file. (recommended)
-
-<a name="projectTree"></a>
 
 ### Project Tree
 ```
@@ -109,21 +215,30 @@ Astro leverages an opinionated folder layout for your project. Every Astro proje
 ├── src/
 |   ├── assets/
 |   |   └── images/
-|   ├── js/
-|   |   └── nav.js
 |   ├── components/
+|   |   └── Snipcart/
 │   ├── data/
+│   │   ├── products/
+│   │   |   └── my-product.md
 │   │   ├── client.json
 │   │   └── navData.json
+|   ├── js/
+|   |   └── nav.js
+|   ├── icons/
 │   ├── layouts/
+│   │   ├── ProductLayout.astro
 │   │   └── BaseLayout.astro
 │   ├── pages/
+│   │   ├── products/
+│   │   |   ├── [...product].astro
+│   │   |   └── index.astro
+│   │   ├── index.astro
+│   │   └── reviews.astro
+│   ├── content.config.ts
 |   └── styles/
 ├── .astro.config.mjs
 └── .postcss.config.cjs
 ```
-
-<a name="sourceFilesAndFolders"></a>
 
 ### Source Files and Folders
 
@@ -140,337 +255,44 @@ You can place CSS and JavaScript in your public/ directory, but be aware that th
 
 
 #### `src/*`
-The `src/` folder is where most of your project source code lives. This includes:
-
-* Pages
-* Layouts
-* Astro components
-* UI framework components (React, etc.)
-* Styles (CSS, Sass)
-* Markdown
-
-Astro processes, optimizes, and bundles your src/ files to create the final website that is shipped to the browser. Unlike the static public/ directory, your src/ files are built and handled for you by Astro.
 
 ##### `src/assets`
 Contains all assets you want optimized by Astro (such as assets used in `<Picture />` components for example) must be placed in `src`.
 
-`public/assets/images/blog` is where the images uploaded on the CMS will be stored.
-
 ##### `src/components`
-Components are reusable units of code for your HTML pages. These could be Astro components, or UI framework components like React or Vue. It is common to group and organize all of your project components together in this folder.
+Components are reusable units of code for your HTML pages. Snipcart components have been placed in the `/Snipcart` folder
 
 ##### `src/data`
 This directory contains data files that are accessible within any template throughout the project. 
 * `client.js` holds some information you may wish to define for a client. It's important to fill this file out with the correct information for your client, as many HTML meta tags, the sitemap, and robots.txt all use data from this file.
-
 * `navData.json` holds data to create the navigation of your site. See more information in the [navigation via navData.json section](#navigationViaFrontMatter)
-
+* the `/products` folder contains the markdown files for the `prodcuts` **content collection**. 
 
 ##### `src/layouts`
 Layouts are Astro components that define the UI structure shared by one or more pages. The `BaseLayout.astro` file acts as a giant wrapper for each individual page, where the content is injected through the `<slot /> `component.
 
-
 ##### `src/pages`
 Pages are a special kind of component used to create new pages on your site. A page can be an Astro component, or a Markdown file that represents some page of content for your site.
+The `/products` sub-folder contains a `[...product].astro` file which is used to dynamically generate product pages based on the content collection data.
 
 ##### `src/styles`
-It is a common convention to store your CSS, Less or Sass files in a `src/styles` directory.
+It is a common convention to store your CSS, Less or Sass files in a `src/styles` directory. Snipcart theming overrides can be found in `snipcart.less`.
 
-#### `package.json` and `package-lock.json`
-The project's manifest. Standard NodeJS package files, containing the dependencies needed for the project to work.
 
-#### `node_modules/*`
-Created after you run `npm install`. This directory contains the code for all the dependencies that power this kit. It comes as standard with any NodeJS-powered project, much like the `package.json` and `package-lock.json` files. You can safely ignore this directory in your day-to-day work.
-
-
-<a name="expandingTheProject"></a>
-
-## Expanding the Project
-
-Aimed towards freelancers, this kit was made with scalability and flexibility in mind, suiting a range of websites and client needs. As such, it is your choice
-whether you'd rather make small tweaks to the existing site, or clear all the page content and build a site all over again. Outlined below are some best
-practices for when it comes to building on top of this kit:
-
-<a name="reusingCode"></a>
-
-### Reusing Code
-
-The main advantage to using an SSG is it brings **components**, popularized by JavaScript-heavy frameworks like React or Vue, to vanilla HTML. As Astro is being used, componentization can be achieved through JSX-like syntax within .astro files.
-Components are located inside the `src/components` folder.
-For example, there is a call to action at the bottom of most pages. As the text content or styles don't need to change, `<CTA />` was
-used. 
-To create a component, create a file in `src/components`. For example `src/components/CTA.astro`. Copy the HTML and CSS over from CodeStitch. Your component is now ready to use.
-Import it in the page where you need it: 
-```JSX
----
-import BaseLayout from "../layouts/BaseLayout.astro";
-import CTA from "../components/CTA.astro";
----
-```
-
-And call it in the JSX markup with `<CTA />`.
-
-As the text content or styles don't need to change, a simple component was used. If this wasn't the case, and we wanted the CTA text to change, we'd start to think about passing props to `<CTA />`.
-
-An example of passing props to components is `Landing />`.
-
-In `about.astro`:
-
-```JS
----
-// import the component
-import Landing from "@components/Landing.astro";
----
-
-<BaseLayout
-  // props
->
-  // Use the <Landing /> component
-  <Landing 
-    title="About Us" // pass a `title` prop to the component
-    image={optimizedImage} // pass an 'image' prop to the component
-  />
-```
-
-In `Landing.astro`
-```JS
----
-const { title } = Astro.props // Destructure the incoming props. Note the `Astrop.props` syntax
----
-
-<h1 id="home-h">{title}</h1> // Consumme the title prop in the JSX markup
-
-```
-
-<a name="addingMorePages"></a>
-
-### Adding More Pages
-
-Thanks to Astro Navigation, adding new pages is as simple as adding a file to src/pages/ and including it in the `data/navData.json` file:
-
-```
----
-// optional JavaScript frontmatter
----
-
-<BaseLayout
-  title="Page title for <title> and OG tags"
-  description="Description for <meta> and OG tags"
-  preloadImg={import("/assets/images/imagename.format")}
->
-    <!-- Page HTML goes here, without a <main> wrapper -->
-</BaseLayout>
-```
-
-Starting from the top, you can see some data enclosed in --- tags. This is known as the page's front matter, which provides additional data to when it comes to
-rendering your pages.
-
-<a name="navigationViaFrontMatter"></a>
-
-### Navigation via navData.json
-
-The header navigation in the project is powered by the `navData.json` file. Each page in the navigation should be included as an item with a `key` property (page title to be displayed) and a `url` property (include a trailing slash). 
-
-To add subpages, include a `children` property. The `children` property should be an array that contains more page objects (i.e., object containing a `key` and `url` property.) If a page has a `children` array property is specified, a dropdown will be created, providing
-a Navigation + Dropdown Stitch is being used (see below). Navigations will render in order.
-
-> If you wish to use an alternative Navigation stitch, you are welcome to swap out the .cs-ul-wrapper div in the Stitch for the one in the Starter Kit. This
-> will allow you to continue to reap the benefits of eleventyNavigation. You can find the .cs-ul-wrapper div below
-
-```
-<div class="cs-ul-wrapper">
-  <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
-    {
-      navData.map((entry) => (
-        <li
-          class:list={[
-            "cs-li",
-            { "cs-dropdown": entry.children?.length > 0 },
-          ]}
-          tabindex={entry.children?.length > 0 ? "0" : ""}
-        >
-          <a
-            href={entry.url}
-            class:list={[
-              "cs-li-link",
-              { "cs-active": Astro.url.pathname === entry.url },
-            ]}
-          >
-            {entry.key}
-          </a>
-          {entry.children?.length > 0 && (
-            <ul class="cs-drop-ul">
-              {entry.children.map((child) => (
-                <li class="cs-drop-li">
-                  <a href={child.url} class="cs-li-link cs-drop-link">
-                    {child.key}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))
-    }
-  </ul>
-</div>
-```
-
-Should you wish to use your own method of rendering the navigation, you can still take advantage of applying the "active" class styles by using a smaller amount of code within the class attribute of the link:
-
-```
-<li class="cs-li">
-  <a href="/about" class:list={["cs-li-link, {"cs-active": "/about/" === Astro.url.pathname }]}>About</a>
-</li>
-```
-
-In this case, if the page slug is "about", the .cs-active class will be applied. You're welcome to adjust the page slug value to whatever you require ("blog", "/", "services", etc)
-
-For dropdowns, you can use a similar philosophy on the parent dropdown's class attribute, checking to see if any of the child pages are active before applying the styles. An example of this is shown below:
-
-```
-<li class="nav-link cs-li cs-dropdown">
-  <span class:list={["cs-li-link nav-link",
-    { 'cs-active': '/annapolis-custom-closets/' === Astro.url.pathname },
-    { 'cs-active': '/bowie-custom-closets/' === Astro.url.pathname },
-    { 'cs-active': '/severna-park-custom-closets/' === Astro.url.pathname },
-    { 'cs-active': '/odenton-custom-closets/' === Astro.url.pathname },
-  ]}>
-    Areas Served
-    <img class="cs-drop-icon" src="/assets/images/down.svg" alt="dropdown icon" width="15" height="15" decoding="async" aria-hidden="true">
-  </span>
-  <ul class="cs-drop-ul">
-    <li class="cs-drop-li">
-      <a href="/annapolis-custom-closets" class="cs-drop-link">Annapolis</a>
-    </li>
-    <li class="cs-drop-li">
-      <a href="/bowie-custom-closets" class="cs-drop-link">Bowie</a>
-    </li>
-    <li class="cs-drop-li">
-      <a href="/severna-park-custom-closets" class="cs-drop-link">Severna Park</a>
-    </li>
-    <li class="cs-drop-li">
-      <a href="/odenton-custom-closets" class="cs-drop-link">Odenton</a>
-    </li>
-  </ul>
-</li>
-```
-
-In the above example, we're checking to see if the active page slug matches any of the four that are listed (annapolis, bowie, severna or odenton) and applying the .cs-active style to the parent if it does.
-
-Below the front matter is the page content. Any code that should be sent to a layout should be enclosed in the layout's component:
-
-```
-<BaseLayout>
-  <!-- Your html/jsx code here -->
-</BaseLayout>
-```
-
-This code will be inserted into the `<slot />` component in BaseLayout.astro.
-
-<a name="builtinastrocomponents"></a>
-
-### Built-in Astro components: `<Image />` and `<Picture />`
-This kit demonstrates the use of the built-in `<Picture />` component, [for which you can read the documentation here](https://docs.astro.build/en/guides/images/#picture-). However, not all native HTML `<picture>` elements from CodeStitch blocks have been replaced with Astro's `<Picture />` components. CodeStich users will have to decide which one they want to use:
- * CodeStich blocks already have fully-functionning `<picture>` elements that perform very well. However, the developper will have to do a time-consumming job with resizing and reformatting assets.
- * Astro's `<Picture />` components must be manually written to replace stitches. On the other hand, they automatically process and optimize assets, which allows the developper to skip the resizing and reformatting preparation work.
-
-
-<a name="preloadingimages"></a>
-
-### Preloading images
-THis kit takes advantage of the [preload attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload) to fetch images above the fold with higher priority, resulting in improved performances and reducing flashes of unstyled content. Preloaded images are used on the index page for the hero image as well as on all other pages in the Landing component.
-
-You will notice this snippet at the top of every `.astro` page:
-
-```jsx
----
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/landing.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage)
----
-```
-
-You only need to change the path of the asset you want to preload. The rest is managed behind the scenes.
-
-<a name="css"></a>
-
-### CSS
-
-Most CSS will be written within the components it's styling via **scoping**. Scoped styles are compiled behind-the-scenes to only apply to HTML written inside of that same component. The CSS that you write inside of an Astro component is automatically encapsulated inside of that.
-
-As this kit runs `less`, we can use the `<style lang="less"></style>` tags to write our nested CSS. If you prefer non-nested, traditional CSS you can use standard `<style></style>` tags in your `.astro` files.
-
-You can also use standalone `less` or `.css` stylesheets, located in `src/styles`. Don't forget to import them in your component.
-
-<a name="addingViewTransitions"></a>
-
-### Adding View Transitions
-Opt in to using view transitions on individual pages by importing and adding the <ViewTransitions /> routing component to <head> in <BaseLayout />.
-
-```html
----
-import { ViewTransitions } from 'astro:transitions';
----
-<html lang="en">
-  <head>
-    <title>My Homepage</title>
-    <ViewTransitions />
-  </head>
-  <body>
-    <h1>Welcome to my website!</h1>
-  </body>
-</html>
-```
-
-#### Using scripts with View Transitions enabled
-When you add view transitions to an existing Astro project, some of your scripts may no longer re-run after page navigation like they did with full-page browser refreshes. 
-
-The <ViewTransition /> router fires a number of events on the document during navigation. These events provide hooks into the lifecycle of navigation, allowing you to do things like show indicators that a new page is loading, override default behavior, and restore state as navigation is completing.
-
-You can use the `astro:page-load` event to run code on every page navigation, for example to set up event listeners that would otherwise be lost during navigation.
-
-```js
-<script>
-  document.addEventListener('astro:page-load', () => {
-    // This runs on first page load and after every navigation.
-    setupStuff(); // e.g. add event listeners
-  });
-</script>
-```
-
-For an in-depth explanation, please refer <a href="https://docs.astro.build/en/guides/view-transitions/#script-behavior-with-view-transitions">to the documentation.
-
-<a name="netlifyforms"></a>
-
-### Adding Netlify Forms
-We recommend hosting your site on Netlify to enjoy some of their perks, like automatic form detection.
-
-Netlify’s serverless form handling allows you to manage forms without extra API calls or additional JavaScript. Once enabled, the built-in form detection feature allows our build system to automatically parse your HTML at deploy time, so there’s no need for you to make an API call or include extra JavaScript on your site.
-
-Learn how to set them up on [Netlify documentation](https://docs.netlify.com/forms/setup/)
-
-
-<a name="deployment"></a>
 
 ## Deployment
 
-1. Ensure the astro.config.mjs, client.json, robots.txt and \_redirects have been filled out. 
-2. Navigate to your Netlify Admin Panel, click _Add new site | Import an existing project_
-3. Follow the instructions to connect your GitHub repository to Netlify.
+1. Ensure the astro.config.mjs, client.json, robots.txt, .env and \_redirects have been filled out. 
+2. Upload your .env file in your Netlify account under *** Site configuration / Environment variables ***
 
-<a name="acknowledgments"></a>
 
 ## Acknowledgments
 
-The author would like to acknowledge:
-* [Cedar Studios](https://github.com/cedar-studios) - Their [Intermediate-Astro-Kit-LESS](https://github.com/cedar-studios/Intermediate-Astro-Kit-LESS/tree/master) is the base of this template, which aims to improve on a few issues such as updates to Astro v4.
-* [CodeStitch](https://codestitch.app/) - Some of their free stitches were used in this template.
-<a name="Conclusion"></a>
+The author would like to acknowledge [Lloyd Atkinson](https://github.com/lloydjatkinson) - Creator of the [Astro Snipcart integration](https://astro-snipcart.vercel.app/) - Astro Snipcart is a free and open source e-commerce Astro integration that is built on top of the Snipcart platform, and serves as the base for this starter kit.
+
 
 ## Conclusion
-I hope that this kit will prove useful to you. If you have any questions or would like to connect, feel free to reach out on [Twitter](https://twitter.com/BuckyBuck135) or at `buckybuck` on Discord.
+I hope that this kit will prove useful to you. If you have any questions or would like to connect, feel free to reach out at `buckybuck` on Discord.
 
 Happy coding!
 ***Geoffrey***
