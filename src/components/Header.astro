@@ -16,8 +16,7 @@ import SignIn from "./Snipcart/SignIn.astro";
 
 		<!--Mobile Navigation-->
     <div class="lg:cs-hidden">
-
-    <CartDisplay />
+      <CartDisplay />
     </div>
 		<nav class="cs-nav" role="navigation">
 			<!--Mobile Nav Toggle-->
@@ -51,10 +50,9 @@ import SignIn from "./Snipcart/SignIn.astro";
 
     <!--Desktop settings-->
 		<div class="cs-hidden lg:cs-flex">
-			<!--Dark Mode toggle-->
 			<DarkModeToggle />
-			<!--Displays number of items and triggers opening the cart-->
 			<CartDisplay />
+      <SignIn />
 		</div>
 	</div>
 </header>
