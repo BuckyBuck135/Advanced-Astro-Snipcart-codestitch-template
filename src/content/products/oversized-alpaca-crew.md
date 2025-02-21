@@ -5,7 +5,7 @@ price: 10.00
 discountedPrice: 8.00
 discountPercent: 20
 currency: EUR
-image: "https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/ecomm-alpaca.png"
+image: "@assets/images/products/ecomm-caps.png"
 categories:
     - run
     - dress
