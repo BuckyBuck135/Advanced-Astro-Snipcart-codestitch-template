@@ -5,7 +5,7 @@ price: 100.00
 discountedPrice: 80.00
 discountPercent: 20
 currency: EUR
-image: "https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/ecomm-round-neck.png"
+image: "@assets/images/products/ecomm-caps.png"
 categories:
     - run
     - dress

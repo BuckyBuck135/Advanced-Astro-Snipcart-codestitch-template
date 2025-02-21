@@ -1,7 +1,7 @@
 ---
 // This is the layout for any /products/* item //
 
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
@@ -17,7 +17,14 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 
 	<section id="product">
 		<div class="cs-container">
-			<Image src={image} alt={name} inferSize={true} class="cs-large-image" />
+			<!-- When using the <Picture /> element, use the pictureAttributes attribute to pass the cs-picture class -->
+			<!-- https://docs.astro.build/en/reference/modules/astro-assets/#pictureattributes -->
+			<Picture
+				src={image}
+				alt={name}
+				formats={['avif', 'webp']}
+				pictureAttributes={{ class: "cs-large-image" }}
+			/>
 			<div class="cs-product-info">
 				<h3 class="cs-h3">{name}</h3>
 
@@ -272,6 +279,10 @@ const { name, description, price, discountedPrice, discountPercent, currency, im
 				.cs-cart {
 					background-color: var(--medium);
 					border-color: var(--accent);
+				}
+
+				.cs-details {
+					border-color: var(--bodyTextColorWhite);
 				}
 			}
 		}

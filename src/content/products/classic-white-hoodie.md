@@ -1,16 +1,16 @@
 ---
-name: Diesel V2 Hoodie
-description: Soft and comfortable hoodie.
-price: 100.00
-discountedPrice: 80.00
+name: Classic White Hoodie
+description: Soft and comfortable beanie with a classic blue design.
+price: 10.00
+discountedPrice: 8.00
 discountPercent: 20
 currency: EUR
-image: "https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/ecomm-hoodie.png"
+image: "@assets/images/products/ecomm-caps.png"
 categories:
-    - run
-    - dress
+    - hoodie
+    - sports
 relatedProductIds:
-    - blue-chunky-beanie
+    - diesel-v2-hoodie
 ---
 - Drawcord at hood
 - 3D tone-on-tone handwriting embroidery on front

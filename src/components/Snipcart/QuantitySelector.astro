@@ -23,7 +23,7 @@ const priceInCart = discountedPrice ? discountedPrice : price
 </div>
 
 <Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image} quantity={quantity}>
-	<button class="cs-button-solid" aria-label={`Add ${name} to cart`}> Add to cart </button>
+	<button class="cs-button-solid cs-button-buy" aria-label={`Add ${name} to cart`}> Add to cart </button>
 </Product>
 
 <style lang="less">
@@ -50,9 +50,18 @@ const priceInCart = discountedPrice ? discountedPrice : price
 		color: #000;
 	}
 
+	/* styles the 2 buttons */
+	.snipcart-item-quantity__quantity,
+	.cs-button-buy {
+		width: 10rem;
+		max-width: 100%;
+	}
+
 	body.dark-mode {
 		.snipcart-item-quantity__label {
 			color: var(--bodyTextColorWhite);
+			border-color: var(--bodyTextColorWhite);
+
 		}
 	}
 </style>
