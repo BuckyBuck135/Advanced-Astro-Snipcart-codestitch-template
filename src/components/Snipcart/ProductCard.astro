@@ -12,7 +12,7 @@ const priceInCart = discountedPrice ? discountedPrice : price;
 ---
 
 <article class="cs-item">
-	<a href={`products/${product.id}`} class="cs-link">
+	<a href={`/products/${product.id}`} class="cs-link">
 		<div class="cs-picture-group">
 			<Image src={image} alt={name} inferSize={true} class="cs-picture" />
 			{discountPercent && <span class="cs-offer">-{discountPercent}%</span>}
