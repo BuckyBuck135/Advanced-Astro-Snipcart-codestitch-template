@@ -217,9 +217,9 @@ Used to define a product that is added to the cart when the user interacts with 
 |   |   └── images/
 |   ├── components/
 |   |   └── Snipcart/
+|   ├── content/
+|   |   └── blue-cap.md
 │   ├── data/
-│   │   ├── products/
-│   │   |   └── my-product.md
 │   │   ├── client.json
 │   │   └── navData.json
 |   ├── js/
@@ -264,13 +264,16 @@ Contains all assets you want optimized by Astro (such as assets used in `<Pictur
 
 Components are reusable units of code for your HTML pages. Snipcart components have been placed in the `/Snipcart` folder
 
+##### `src/content`
+
+Tis is where we store the content feeding the **content collection** system. Te `/products` folder contains the markdown files for the `products` content collection.
+
 ##### `src/data`
 
 This directory contains data files that are accessible within any template throughout the project.
 
 - `client.js` holds some information you may wish to define for a client. It's important to fill this file out with the correct information for your client, as many HTML meta tags, the sitemap, and robots.txt all use data from this file.
 - `navData.json` holds data to create the navigation of your site. See more information in the [navigation via navData.json section](#navigationViaFrontMatter)
-- the `/products` folder contains the markdown files for the `prodcuts` **content collection**.
 
 ##### `src/layouts`
 
