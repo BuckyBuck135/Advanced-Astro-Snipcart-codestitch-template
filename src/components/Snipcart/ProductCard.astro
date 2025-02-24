@@ -33,7 +33,7 @@ const priceInCart = discountedPrice ? discountedPrice : price;
 					<Price currency={currency} price={price} discountedPrice={discountedPrice} />
 				</div>
 				<!-- Buy buton -->
-				<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image}>
+				<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image.src}>
 					<button class="cs-buy" aria-label={`Add ${name} to cart`}>
 						<Icon name="mdi--basket-plus" class="cs-basket" aria-hidden="true" />
 						<!-- <img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" /> -->
