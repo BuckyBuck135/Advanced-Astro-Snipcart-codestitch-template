@@ -1,5 +1,5 @@
 > [!WARNING]
-> This beta version has not been tested in a real production environment.
+> This kit has not been tested in a real production environment and is delivered as-is.
 
  
   <h3 align="center">Advanced Astro Snipcart E-commerce Starter Kit</h3>
@@ -26,6 +26,7 @@
 - [Project Structure](#project-structure)
   - [Project Tree](#project-tree)
   - [Source Files and Folders](#source-files-and-folders)
+- [Expanding the project](#expanding-the-project)
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
 - [Conclusion](#conclusion)
@@ -288,14 +289,37 @@ The `/products` sub-folder contains a `[...product].astro` file which is used to
 
 It is a common convention to store your CSS, Less or Sass files in a `src/styles` directory. Snipcart theming overrides can be found in `snipcart.less`.
 
+
+## Expanding the project
+Snipcart can be customized to fit your progrtammatic and theming needs.
+
+### Using the JavaScript SDK
+Snipcart offers a [JavaScript SDK](https://docs.snipcart.com/v3/sdk/basics) that lets you configure, customize and manage the cart programmatically.
+
+> [!WARNING]
+> Using the `Snipcart` object will most likely trigger an error in your IDE (`Cannot find name 'Snipcart'.`), but **the code will work** all the same. This is because the `Snipcart` object is only exposed through the integration, and not diretcly to the script.
+document.addEventListener('snipcart.ready', () => {
+  // You will get a `Cannot find name 'Snipcart'.` error here
+	Snipcart.api.theme.cart.close();
+});
+
+### Theming
+
+This kit overrides some of the default Snipcart theming (see `snipcart.less`). Find more info on theming on the [Snipcart's docs](https://docs.snipcart.com/v3/setup/theming)
+
 ## Deployment
 
 1. Ensure the astro.config.mjs, client.json, robots.txt, .env and \_redirects have been filled out.
 2. Upload your .env file in your Netlify account under **_ Site configuration / Environment variables _**
+3. Toggle the Live mode in your Snipcart dashboard.
+4. Use the Live API key
+
+Before you go live, make sure to read [Snipcart's docs](https://docs.snipcart.com/v3/testing/going-live) for the final steps.
 
 ## Acknowledgments
 
 The author would like to acknowledge [Lloyd Atkinson](https://github.com/lloydjatkinson) - Creator of the [Astro Snipcart integration](https://astro-snipcart.vercel.app/) - Astro Snipcart is a free and open source e-commerce Astro integration that is built on top of the Snipcart platform, and serves as the base for this starter kit.
+
 
 ## Conclusion
 

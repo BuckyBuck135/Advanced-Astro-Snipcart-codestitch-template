@@ -8,6 +8,8 @@
 + <Product as="span" id={product.id} image={image.src} >
 ```
 
+- Fixed an issue where the checkout modal would not render properly when on a sign-in or sign-up page
+
 ## 0.2.1
 Beta version
 ### Major changes
