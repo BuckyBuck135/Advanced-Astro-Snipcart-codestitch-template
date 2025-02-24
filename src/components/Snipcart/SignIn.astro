@@ -5,7 +5,7 @@ import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 
 <div class="cs-cart">
 	<CustomerSignIn>
-		<button class="cs-button-solid snipcart-cart-button" aria-label="Sign in to your account." title="Sign in">
+		<button class="cs-button-solid snipcart-sign-in-button" aria-label="Sign in to your account." title="Sign in">
 			<!-- /* Use the Icon component if you want to change the icon */ -->
 			<!-- <Icon name="mdi--basket-plus" /> -->
 			<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -22,10 +22,9 @@ import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 
 <script>
 	// This script will ensure that the mobile menu gets toggled off when the sign in button is clicked
-	const cartButtons = document.querySelectorAll(".snipcart-cart-button");
-	cartButtons.forEach((button) => {
+	const signInButtons = document.querySelectorAll(".snipcart-sign-in-button");
+	signInButtons.forEach((button) => {
 		button.addEventListener("click", () => {
-			console.log("Sign in button clicked");
 			toggleMenu();
 			ariaExpanded(mobileMenuToggle);
 		});
@@ -46,7 +45,18 @@ import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 		const isExpanded = element.getAttribute("aria-expanded");
 		element.setAttribute("aria-expanded", isExpanded === "false" ? "true" : "false");
 	}
+
+	// removed the side-cart when the sign in button is clicked
+	signInButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+	const htmlElement = document.documentElement;
+      if (htmlElement.classList.contains("snipcart-sidecart--opened")) {
+        htmlElement.classList.remove("snipcart-sidecart--opened");
+      }
+    });
+  });
 </script>
+
 
 <style lang="less">
 	.cs-cart {
