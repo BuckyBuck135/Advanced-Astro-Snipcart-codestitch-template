@@ -21,18 +21,20 @@ import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 </div>
 
 <script>
-	// This script will ensure that the mobile menu gets toggled off when the sign in button is clicked
+	// This script will ensure that the mobile menu gets toggled off, and that user is redirected to sign in page when the sign in button is clicked
+	const CSbody = document.querySelector("body");
+	const CSnavbarMenu = document.getElementById("cs-navigation");
+	const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
 	const signInButtons = document.querySelectorAll(".snipcart-sign-in-button");
+
 	signInButtons.forEach((button) => {
 		button.addEventListener("click", () => {
 			toggleMenu();
 			ariaExpanded(mobileMenuToggle);
+			relocateToDashboard();
 		});
 	});
 
-	const CSbody = document.querySelector("body");
-	const CSnavbarMenu = document.getElementById("cs-navigation");
-	const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
 
 	function toggleMenu() {
 		mobileMenuToggle?.classList.toggle("cs-active");
@@ -46,15 +48,10 @@ import { CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 		element.setAttribute("aria-expanded", isExpanded === "false" ? "true" : "false");
 	}
 
-	// removed the side-cart when the sign in button is clicked
-	signInButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-	const htmlElement = document.documentElement;
-      if (htmlElement.classList.contains("snipcart-sidecart--opened")) {
-        htmlElement.classList.remove("snipcart-sidecart--opened");
-      }
-    });
-  });
+	// Relocates the user to the dashboard page to cover an edge case where clicking the sign in button didn't redirect the user to the dashboard
+	function relocateToDashboard() {
+		window.location.href = `${window.location.origin}${window.location.pathname}#/signin`;
+	}
 </script>
 
 
