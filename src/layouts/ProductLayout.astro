@@ -10,9 +10,11 @@ import QuantitySelector from "@components/Snipcart/QuantitySelector.astro";
 
 const { product } = Astro.props;
 const { name, description, price, discountedPrice, discountPercent, currency, image, categories, relatedProductIds } = product.data;
+
+const bannerMessage = discountedPrice ? "This product is on sale!" : "";
 ---
 
-<BaseLayout title={name} description={description}>
+<BaseLayout title={name} description={description} bannerMessage={bannerMessage} >
 
 
 	<section id="product">

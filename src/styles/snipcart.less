@@ -11,17 +11,13 @@
 	font-family: inherit;
 }
 
-.snipcart-cart-summary-side .snipcart-cart__secondary-header {
-	padding: clamp(6rem, 10vw, 8rem) 2rem clamp(1rem, 5vw, 2rem);
+.snipcart-modal__container {
+	/* This magic number pushes the cart / signin modal down so that the nav bar can appear too - adjust as needed */
+	top: 103px;  /* banner height + navigation height */
 }
 
-.snipcart-cart-header,
-.snipcart-cart__secondary-header{
-	padding: clamp(6rem, 10vw, 8rem) 2rem clamp(1rem, 5vw, 2rem);
-}
-
-.snipcart-signin__box {
-	padding: clamp(6rem, 10vw, 8rem) 2rem;
+.snipcart-cart-header {
+	margin-bottom: unset;
 }
 
 .snipcart__font--secondary, 
@@ -61,6 +57,13 @@
 	}
 }
 
+
+@media only screen and (min-width: 64rem) {
+	.snipcart-modal__container {
+		/* This magic number pushes the cart / signin modal down so that the nav bar can appear too - adjust as needed */
+		top: 137px; /* banner height + navigation height */
+	}
+}
 body.dark-mode {
 	#snipcart {
 		--bgColor-default: var(--accent);

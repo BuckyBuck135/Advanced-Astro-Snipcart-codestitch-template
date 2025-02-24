@@ -2,12 +2,16 @@
 import CartDisplay from "@components/Snipcart/CartDisplay.astro";
 import navData from "../data/navData.json";
 import DarkModeToggle from "./DarkModeToggle.astro";
-import { CartCheckout, CustomerSignIn } from "@lloydjatkinson/astro-snipcart/astro";
 import SignIn from "./Snipcart/SignIn.astro";
+import Banner from "./Snipcart/Banner.astro";
+
+const { bannerMessage="Welcome to our Demo Store" } = Astro.props;
+
 ---
 
 <!-- ============================================ --><!--                 Navigation                   --><!-- ============================================ -->
 <header id="cs-navigation">
+	<Banner message={bannerMessage} />
 	<div class="cs-container">
 		<!--Nav Logo-->
 		<a href="/" class="cs-logo" aria-label="back to home">
@@ -15,9 +19,9 @@ import SignIn from "./Snipcart/SignIn.astro";
 		</a>
 
 		<!--Mobile Navigation-->
-    <div class="lg:cs-hidden">
-      <CartDisplay />
-    </div>
+		<div class="lg:cs-hidden">
+			<CartDisplay />
+		</div>
 		<nav class="cs-nav" role="navigation">
 			<!--Mobile Nav Toggle-->
 			<button class="cs-toggle" id="mobile-menu-toggle" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cs-expanded-ul">
@@ -40,7 +44,7 @@ import SignIn from "./Snipcart/SignIn.astro";
 						))
 					}
 				</ul>
-        <!--Mobile settings-->
+				<!--Mobile settings-->
 				<div class="cs-settings lg:cs-hidden">
 					<DarkModeToggle />
 					<SignIn />
@@ -48,11 +52,11 @@ import SignIn from "./Snipcart/SignIn.astro";
 			</nav>
 		</nav>
 
-    <!--Desktop settings-->
+		<!--Desktop settings-->
 		<div class="cs-hidden lg:cs-flex">
 			<DarkModeToggle />
 			<CartDisplay />
-      <SignIn />
+			<SignIn />
 		</div>
 	</div>
 </header>
@@ -76,11 +80,10 @@ import SignIn from "./Snipcart/SignIn.astro";
 			width: 100%;
 			/* prevents padding from affecting height and width */
 			box-sizing: border-box;
-			padding: (12/16rem) (16/16rem);
 			background-color: #fff;
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 			position: fixed;
-			z-index: 10000;
+			z-index: 10;
 
 			&:before {
 				/* black blurred overlay */
@@ -126,6 +129,8 @@ import SignIn from "./Snipcart/SignIn.astro";
 				justify-content: flex-end;
 				align-items: center;
 				gap: (8/16rem);
+				padding: (12/16rem) (16/16rem);
+
 			}
 
 			.cs-logo {
@@ -393,7 +398,7 @@ import SignIn from "./Snipcart/SignIn.astro";
 			background-color: #fff;
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 			position: fixed;
-			z-index: 10000;
+			z-index: 10;
 
 			.cs-container {
 				width: 100%;
