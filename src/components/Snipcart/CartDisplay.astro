@@ -1,13 +1,14 @@
 ---
-import { Icon } from "astro-icon/components";
+/**
+ * * You may be getting `Cannot find name 'Snipcart'.` errors in your terminal. I think it's because the Snipcart API is not directly exposed via the Snipcart CDN, but via the Astro integration
+ * * it works nonetheless :)
+**/
 import { CartCheckout, CartItemsCount } from "@lloydjatkinson/astro-snipcart/astro";
 ---
 
 <div class="cs-cart">
 	<CartCheckout>
 		<button class="cs-button-solid snipcart-checkout-button" title="View Cart">
-			<!-- /* Use the Icon component if you want to change the icon */ -->
-			<!-- <Icon name="mdi--cart" /> -->
 			<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
 				><path
 					fill-rule="evenodd"
@@ -16,14 +17,18 @@ import { CartCheckout, CartItemsCount } from "@lloydjatkinson/astro-snipcart/ast
 					fill="currentColor"></path></svg
 			>
 			<CartItemsCount />
+			<div class="cs-hidden lg:cs-flex">
+				<kbd>Alt</kbd> + <kbd>C</kbd>
+			</div>
 		</button>
 	</CartCheckout>
 </div>
 
 <script>
-	// This script will ensure that the cart gets toggled back on when the checkout button is clicked (edge case for when the sign in modal is already opened)
+	// Ensures that the cart gets toggled back on when the checkout button is clicked (edge case for when the sign in modal is already opened)
 	document.addEventListener("snipcart.ready", () => {
 		const cartButtons = document.querySelectorAll(".snipcart-checkout-button");
+		if (cartButtons.length === 0) return;
 		cartButtons.forEach((button) => {
 			button.addEventListener("click", () => {
 				Snipcart.api.theme.cart.close();
