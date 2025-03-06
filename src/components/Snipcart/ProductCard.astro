@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from "astro:assets";
+import { Picture } from "astro:assets";
 import { Product } from "@lloydjatkinson/astro-snipcart/astro";
 import Price from "./Price.astro";
 import { Icon } from "astro-icon/components";
@@ -32,11 +32,10 @@ const priceInCart = discountedPrice ? discountedPrice : price;
 					<!-- if there's no discount, use this: <Price currency={currency} price={ price } /> -->
 					<Price currency={currency} price={price} discountedPrice={discountedPrice} />
 				</div>
-				<!-- Buy buton -->
+				<!-- Buy buton - the .snipcart-checkout class will ensure the cart open on click-->
 				<Product as="span" id={product.id} name={name} url=`/products/${product.id}` price={priceInCart} description={description} image={image.src}>
-					<button class="cs-buy" aria-label={`Add ${name} to cart`}>
+					<button class="cs-buy snipcart-checkout" aria-label={`Add ${name} to cart`}>
 						<Icon name="mdi--basket-plus" class="cs-basket" aria-hidden="true" />
-						<!-- <img class="cs-basket" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg" alt="buy" height="24" width="24" loading="lazy" decoding="async" /> -->
 					</button>
 				</Product>
 			</div>
