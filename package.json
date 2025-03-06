@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "@lloydjatkinson/astro-snipcart": "^0.3.0",
-    "astro": "^5.3.0",
+    "astro": "^5.4.2",
     "astro-icon": "^1.1.5",
     "less": "^4.2.1"
   }
