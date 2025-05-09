@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4
+### Patch changes
+ - Astro has been upgraded to v.5.7.12
+
 ## 0.2.3
 ### Minor changes
 - Fixed Snipcart accessibility issues

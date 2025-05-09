@@ -1,7 +1,7 @@
 {
   "name": "advanced-astro-snipcart",
   "type": "module",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/sitemap": "^3.3.1",
     "@lloydjatkinson/astro-snipcart": "^0.3.0",
-    "astro": "^5.4.2",
+    "astro": "^5.7.12",
     "astro-icon": "^1.1.5",
     "less": "^4.2.1"
   }
